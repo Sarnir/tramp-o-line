@@ -16,12 +16,52 @@ public class JumpHandler : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
-		DateTime space = collision.gameObject.GetComponent<TrampController>().TimeSpacePressed;
-		DateTime touch = DateTime.Now;
-		TimeSpan ts = touch - space;
-		print(ts.Milliseconds);
+		DateTime spaceDown = collision.gameObject.GetComponent<TrampController>().SpaceDown;
+		DateTime spaceUp = collision.gameObject.GetComponent<TrampController>().SpaceUp;
 
-        collision.gameObject.rigidbody2D.AddForce(new Vector2(0, 500));
+		int power = 200;
 
+		if (spaceDown != DateTime.MinValue && spaceUp != DateTime.MinValue) // klik spacji
+		{
+			int miliseconds = (int)(DateTime.Now - spaceUp).TotalMilliseconds;
+			if (miliseconds > 300) // spację puszczono dawno
+			{
+				power = 150; // za wcześnie puszczony
+			}
+			else // puszczono niedawno
+			{
+				power = 600 - miliseconds;
+			}
+			
+			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
+			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
+			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
+		}
+		else if (spaceDown != DateTime.MinValue)
+		{
+			power = 200;
+			
+			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
+			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
+			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
+		}
+		else if (spaceUp != DateTime.MinValue)
+		{
+			power = 500;
+			
+			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
+			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
+			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
+		}
+		else
+		{
+			Vector2 newForce = collision.gameObject.rigidbody2D.velocity;
+			
+			
+			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
+			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
+			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
+		}
+	
     }
 }
