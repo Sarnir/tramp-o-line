@@ -4,6 +4,8 @@ using System;
 
 public class TrampController : MonoBehaviour {
 
+    public DateTime SpaceUp {get; set; }
+    public DateTime SpaceDown {get; set; }
 	public DateTime TimeSpacePressed { get; set; }
     public int horizontalSpeed;
 
@@ -33,6 +35,16 @@ public class TrampController : MonoBehaviour {
         {
             print("left arrow");
             rigidbody2D.AddForce(new Vector2(-horizontalSpeed, 0));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpaceDown = DateTime.Now;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SpaceUp = DateTime.Now;
         }
 
         if (currentTrick && currentTrick.IsTrickFinished())
