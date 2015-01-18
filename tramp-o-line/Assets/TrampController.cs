@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TrampController : MonoBehaviour {
 
+	public DateTime TimeSpacePressed { get; set; }
 	// Use this for initialization
 	void Start () {
 	

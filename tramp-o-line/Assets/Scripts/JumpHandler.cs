@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class JumpHandler : MonoBehaviour {
 
@@ -14,9 +15,13 @@ public class JumpHandler : MonoBehaviour {
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("collided!");
+	{
+		DateTime space = collision.gameObject.GetComponent<TrampController>().TimeSpacePressed;
+		DateTime touch = DateTime.Now;
+		TimeSpan ts = touch - space;
+		print(ts.Milliseconds);
 
         collision.gameObject.rigidbody2D.AddForce(new Vector2(0, 500));
+
     }
 }
