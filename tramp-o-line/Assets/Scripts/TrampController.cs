@@ -22,6 +22,8 @@ public class TrampController : MonoBehaviour {
     {
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
+        rigidbody2D.velocity = Vector2.zero;
+        rigidbody2D.angularVelocity = 0.0f;
     }
 	
 	// Update is called once per frame
@@ -76,6 +78,13 @@ public class TrampController : MonoBehaviour {
             currentTrick = null;
         }
 	}
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        print("Collided with " + collider.gameObject.name + ", tag: " + collider.gameObject.tag);
+        if (collider.gameObject.tag == "Spikes")
+            Reset();
+    }
 
     private void SetTrick<Tricktype>() where Tricktype : Component
     {
