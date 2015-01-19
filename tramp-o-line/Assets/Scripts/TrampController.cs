@@ -14,38 +14,42 @@ public class TrampController : MonoBehaviour {
 	Trick currentTrick { get; set; }
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
         Reset();
 	}
-
-    private void Reset()
-    {
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
-        rigidbody2D.velocity = Vector2.zero;
-        rigidbody2D.angularVelocity = 0.0f;
-    }
 	
 	// Update is called once per frame
-	void Update () {
-        var currentSpeed = rigidbody2D.velocity;
-        var currentRotationSpeed = rigidbody2D.angularVelocity;
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            print("C pressed");
-            SetTrick<FrontSaultTrick>();
-        }
+	void Update ()
+	{
+        Vector2 currentSpeed = rigidbody2D.velocity;
+		float currentRotationSpeed = rigidbody2D.angularVelocity;
+		
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			print("C pressed");
+			SetTrick<PopShoveItTrick>();
+		}
+		
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			print("V pressed");
+			// jeszcze nic
+		}
+		
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			print("B pressed");
+			SetTrick<FrontSaultTrick>();
+		}
 
         if (Input.GetKey(KeyCode.RightArrow) && currentSpeed.x < horizontalSpeed * 4)
         {
-            print("right arrow");
             rigidbody2D.AddForce(new Vector2(horizontalSpeed, 0));
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) && currentSpeed.x > -horizontalSpeed * 4)
         {
-            print("left arrow");
             rigidbody2D.AddForce(new Vector2(-horizontalSpeed, 0));
         }
 
@@ -91,5 +95,13 @@ public class TrampController : MonoBehaviour {
         gameObject.AddComponent<Tricktype>();
         currentTrick = gameObject.GetComponent<Trick>();
         currentTrick.SetPlayer(gameObject);
-    }
+	}
+	
+	private void Reset()
+	{
+		transform.position = spawnPoint.position;
+		transform.rotation = spawnPoint.rotation;
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.angularVelocity = 0.0f;
+	}
 }

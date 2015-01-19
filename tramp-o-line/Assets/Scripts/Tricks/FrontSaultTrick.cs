@@ -27,7 +27,7 @@ public class FrontSaultTrick : Trick {
     {
         if (!trickFinished)
         {
-            if (player && player.transform.rotation.eulerAngles.z - 340.0f > startRotation)
+            if (player && player.transform.rotation.eulerAngles.z - 360.0f > startRotation)
             {
                 trickFinished = true;
                 player.rigidbody2D.angularVelocity = 0.0f;
