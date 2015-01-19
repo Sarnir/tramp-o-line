@@ -8,16 +8,26 @@ public class TrampController : MonoBehaviour {
     public DateTime SpaceDown {get; set; }
 	public DateTime TimeSpacePressed { get; set; }
     public int horizontalSpeed;
+    public int rotationSpeed;
+    public Transform spawnPoint;
 
 	Trick currentTrick { get; set; }
 
 	// Use this for initialization
 	void Start () {
+        Reset();
 	}
+
+    private void Reset()
+    {
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         var currentSpeed = rigidbody2D.velocity;
+        var currentRotationSpeed = rigidbody2D.angularVelocity;
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -35,6 +45,18 @@ public class TrampController : MonoBehaviour {
         {
             print("left arrow");
             rigidbody2D.AddForce(new Vector2(-horizontalSpeed, 0));
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) && currentRotationSpeed < rotationSpeed * 80)
+        {
+            print("up arrow");
+            rigidbody2D.AddTorque(rotationSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow) && currentRotationSpeed > -rotationSpeed * 80)
+        {
+            print("down arrow");
+            rigidbody2D.AddTorque(-rotationSpeed);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

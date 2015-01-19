@@ -32,36 +32,22 @@ public class JumpHandler : MonoBehaviour {
 			{
 				power = 600 - miliseconds;
 			}
-			
-			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
-			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
-			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
 		}
 		else if (spaceDown != DateTime.MinValue)
 		{
 			power = 200;
-			
-			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
-			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
-			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
 		}
 		else if (spaceUp != DateTime.MinValue)
 		{
 			power = 500;
-			
-			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
-			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
-			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
 		}
 		else
 		{
 			Vector2 newForce = collision.gameObject.rigidbody2D.velocity;
-			
-			
-			collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
-			collision.gameObject.GetComponent<TrampController> ().SpaceDown = DateTime.MinValue;
-			collision.gameObject.GetComponent<TrampController> ().SpaceUp = DateTime.MinValue;
 		}
-	
+
+        collision.gameObject.rigidbody2D.AddForce(new Vector2(0, 500));
+        collision.gameObject.GetComponent<TrampController>().SpaceDown = DateTime.MinValue;
+        collision.gameObject.GetComponent<TrampController>().SpaceUp = DateTime.MinValue;
     }
 }
