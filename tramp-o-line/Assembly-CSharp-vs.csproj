@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BlockRotation.cs" />
      <Compile Include="Assets\Scripts\JumpHandler.cs" />
+     <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\TrampController.cs" />
      <Compile Include="Assets\Scripts\Trick.cs" />
      <Compile Include="Assets\Scripts\Tricks\FrontSaultTrick.cs" />
