@@ -1,33 +1,43 @@
 using UnityEngine;
 using System.Collections;
 
-public class PopShoveItTrick : Trick {
-	
-	public float startScale { get; set; }
-	
+public class PopShoveItTrick : Trick
+{
+	private bool firstHalf;
+
 	public override void SetPlayer(GameObject pl)
 	{
 		base.SetPlayer(pl);
-		startScale = pl.transform.localScale.x;
-		print("base scale " + startScale);
-		PerformTrick();
 	}
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	void PerformTrick()
+
+	void Start ()
 	{
-		//player.rigidbody2D.transform.TransformPoint = new Vector3(-startScale, 0, 0);
+		firstHalf = true;
 	}
 	
 	void Update()
 	{
-		if (!trickFinished)
+		if (firstHalf)
 		{
-			trickFinished = true;
+			if (player.transform.localScale.x > -5)
+			{
+				player.transform.localScale = new Vector3(player.transform.localScale.x - 0.5f, player.transform.localScale.y);
+			}
+			else
+			{
+				firstHalf = false;
+			}
+		}
+		else
+		{
+			if (player.transform.localScale.x < 5)
+			{
+				player.transform.localScale = new Vector3(player.transform.localScale.x + 0.5f, player.transform.localScale.y);
+			}
+			else
+			{
+				trickFinished = true;
+			}
 		}
 	}
 }
