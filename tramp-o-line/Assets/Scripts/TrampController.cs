@@ -2,16 +2,12 @@
 using System.Collections;
 using System;
 
-public class TrampController : MonoBehaviour {
-
-    public DateTime SpaceUp {get; set; }
-    public DateTime SpaceDown {get; set; }
+public class TrampController : MonoBehaviour
+{
 	public DateTime TimeSpacePressed { get; set; }
     public int horizontalSpeed;
     public int rotationSpeed;
     public Transform spawnPoint;
-
-	Trick currentTrick { get; set; }
 
 	// Use this for initialization
 	void Start ()
@@ -24,24 +20,6 @@ public class TrampController : MonoBehaviour {
 	{
         Vector2 currentSpeed = rigidbody2D.velocity;
 		float currentRotationSpeed = rigidbody2D.angularVelocity;
-		
-		if (Input.GetKeyDown(KeyCode.C))
-		{
-			print("C pressed");
-			SetTrick<PopShoveItTrick>();
-		}
-		
-		if (Input.GetKeyDown(KeyCode.V))
-		{
-			print("V pressed");
-			// jeszcze nic
-		}
-		
-		if (Input.GetKeyDown(KeyCode.B))
-		{
-			print("B pressed");
-			SetTrick<FrontSaultTrick>();
-		}
 
         if (Input.GetKey(KeyCode.RightArrow) && currentSpeed.x < horizontalSpeed * 4)
         {
@@ -64,23 +42,6 @@ public class TrampController : MonoBehaviour {
             print("down arrow");
             rigidbody2D.AddTorque(-rotationSpeed);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpaceDown = DateTime.Now;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            SpaceUp = DateTime.Now;
-        }
-
-        if (currentTrick && currentTrick.IsTrickFinished())
-        {
-            print("Trick finished!");
-            Destroy(currentTrick);
-            currentTrick = null;
-        }
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -89,13 +50,6 @@ public class TrampController : MonoBehaviour {
         if (collider.gameObject.tag == "Spikes")
             Reset();
     }
-
-    private void SetTrick<Tricktype>() where Tricktype : Component
-    {
-        gameObject.AddComponent<Tricktype>();
-        currentTrick = gameObject.GetComponent<Trick>();
-        currentTrick.SetPlayer(gameObject);
-	}
 	
 	private void Reset()
 	{

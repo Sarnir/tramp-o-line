@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Programy/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Programy/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,10 +51,12 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\TrampController.cs" />
      <Compile Include="Assets\Scripts\Trick.cs" />
+     <Compile Include="Assets\Scripts\TrickController.cs" />
+     <Compile Include="Assets\Scripts\Tricks\BoxGrabTrick.cs" />
      <Compile Include="Assets\Scripts\Tricks\FrontSaultTrick.cs" />
      <Compile Include="Assets\Scripts\Tricks\PopShoveItTrick.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Programy/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

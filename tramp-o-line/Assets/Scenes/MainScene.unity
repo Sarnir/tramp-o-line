@@ -280,6 +280,7 @@ GameObject:
   - 212: {fileID: 316127626}
   - 50: {fileID: 316127628}
   - 114: {fileID: 316127630}
+  - 114: {fileID: 316127631}
   - 60: {fileID: 316127629}
   m_Layer: 0
   m_Name: Player
@@ -366,8 +367,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 10
-  rotationSpeed: 0
-  spawnPoint: {fileID: 715654031}
+  rotationSpeed: 5
+  spawnPoint: {fileID: 421285516}
+--- !u!114 &316127631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316127625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cec0dddc5c277f42b0ae864aeca0950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &421285515
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b058c840a06089b41991576d7e9290c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hobo: {fileID: 316127625}
 --- !u!1 &1297452391
 GameObject:
   m_ObjectHideFlags: 0

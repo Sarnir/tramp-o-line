@@ -4,7 +4,8 @@ using System;
 
 public class JumpHandler : MonoBehaviour
 {
-	public GameObject hobo;
+    DateTime SpaceUp;
+    DateTime SpaceDown;
 
 	private float ySpeed;
 	// Use this for initialization
@@ -16,13 +17,21 @@ public class JumpHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpaceDown = DateTime.Now;
+        }
 
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SpaceUp = DateTime.Now;
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
 	{
-		DateTime spaceDownTime = collision.gameObject.GetComponent<TrampController>().SpaceDown;
-		DateTime spaceUpTime = collision.gameObject.GetComponent<TrampController>().SpaceUp;
+		DateTime spaceDownTime = SpaceDown;
+		DateTime spaceUpTime = SpaceUp;
 		float power = 500;
 
 		double spaceDown = (DateTime.Now - spaceDownTime).TotalMilliseconds; // max 1000
@@ -40,9 +49,9 @@ public class JumpHandler : MonoBehaviour
 			}
 		}
 		
-		print ("POWER: " + power);
+		//print ("POWER: " + power);
 		collision.gameObject.rigidbody2D.AddForce(new Vector2(0, power));
-        collision.gameObject.GetComponent<TrampController>().SpaceDown = DateTime.MinValue;
-        collision.gameObject.GetComponent<TrampController>().SpaceUp = DateTime.MinValue;
+        SpaceDown = DateTime.MinValue;
+        SpaceUp = DateTime.MinValue;
     }
 }

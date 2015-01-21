@@ -3,36 +3,32 @@ using System.Collections;
 
 public class FrontSaultTrick : Trick {
 
-    public float startRotation { get; set; }
-
-    public override void SetPlayer(GameObject pl)
-    {
-        base.SetPlayer(pl);
-        startRotation = pl.transform.rotation.eulerAngles.z;
-        print("base rotation " + startRotation);
-        PerformTrick();
-    }
+    float deltaRotation { get; set; }
+    float currentRotation { get; set; }
+    float previousRotation { get; set; }
 
 	// Use this for initialization
 	void Start () {
-	
+        currentRotation = gameObject.transform.rotation.eulerAngles.z;
+        deltaRotation = 0.0f;
+        previousRotation = 0.0f;
+        gameObject.rigidbody2D.AddTorque(100.0f);
 	}
-
-    void PerformTrick()
-    {
-        player.rigidbody2D.AddTorque(100.0f);
-    }
 
     void Update()
     {
         if (!trickFinished)
         {
-            if (player && player.transform.rotation.eulerAngles.z - 360.0f > startRotation)
+            if (Mathf.Abs(deltaRotation) > 359.0f)
             {
                 trickFinished = true;
-                player.rigidbody2D.angularVelocity = 0.0f;
+                gameObject.rigidbody2D.angularVelocity = 0.0f;
                 print("doneeeeeee");
             }
+
+            previousRotation = currentRotation;
+            currentRotation = gameObject.transform.rotation.eulerAngles.z;
+            deltaRotation += currentRotation - previousRotation;
         }
     }
 }

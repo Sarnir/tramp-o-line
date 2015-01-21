@@ -5,11 +5,6 @@ public class PopShoveItTrick : Trick
 {
 	private bool firstHalf;
 
-	public override void SetPlayer(GameObject pl)
-	{
-		base.SetPlayer(pl);
-	}
-
 	void Start ()
 	{
 		firstHalf = true;
@@ -19,9 +14,9 @@ public class PopShoveItTrick : Trick
 	{
 		if (firstHalf)
 		{
-			if (player.transform.localScale.x > -5)
+            if (gameObject.transform.localScale.x > -5)
 			{
-				player.transform.localScale = new Vector3(player.transform.localScale.x - 0.5f, player.transform.localScale.y);
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.5f, gameObject.transform.localScale.y);
 			}
 			else
 			{
@@ -30,9 +25,9 @@ public class PopShoveItTrick : Trick
 		}
 		else
 		{
-			if (player.transform.localScale.x < 5)
+            if (gameObject.transform.localScale.x < 5)
 			{
-				player.transform.localScale = new Vector3(player.transform.localScale.x + 0.5f, player.transform.localScale.y);
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.5f, gameObject.transform.localScale.y);
 			}
 			else
 			{
@@ -40,4 +35,9 @@ public class PopShoveItTrick : Trick
 			}
 		}
 	}
+
+    void OnDestroy()
+    {
+        gameObject.transform.localScale = new Vector3(5, gameObject.transform.localScale.y);
+    }
 }
