@@ -9,13 +9,13 @@ public class MenuController : MonoBehaviour
 	private Vector2 sky1Pos;
 	private Vector2 sky2Pos;
 	
-	private int leftBoundary = -10;
-	private int rightBoundary = 11;
+	private float leftBoundary = -10.0f;
+	private float rightBoundary = 11.0f;
 
 	void Start ()
 	{
-		sky1Pos = new Vector2(rightBoundary, 0);
-		sky2Pos = new Vector2(leftBoundary, 0);
+		sky1Pos = new Vector2(rightBoundary, 0.0f);
+		sky2Pos = new Vector2(leftBoundary, 0.0f);
 	}
 
 	void Update ()
@@ -30,11 +30,11 @@ public class MenuController : MonoBehaviour
 	{
 		if (position.x <= leftBoundary)
 		{
-			position = new Vector2(rightBoundary, 0);
+			position = new Vector2(rightBoundary, 0.0f);
 		}
 		else
 		{
-			position = new Vector2(position.x - 1.0f, 0);
+			position = new Vector2(position.x - 0.5f, 0.0f);
 		}
 	}
 }

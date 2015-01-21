@@ -4,6 +4,7 @@ using System.Collections;
 public class PopShoveItTrick : Trick
 {
 	private bool firstHalf;
+    private int trampScale = 5;
 
 	void Start ()
 	{
@@ -12,11 +13,13 @@ public class PopShoveItTrick : Trick
 	
 	void Update()
 	{
+		float interval = trampScale / 10.0f;
+
 		if (firstHalf)
 		{
-            if (gameObject.transform.localScale.x > -5)
+            if (gameObject.transform.localScale.x > -trampScale)
 			{
-                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.5f, gameObject.transform.localScale.y);
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - interval, gameObject.transform.localScale.y);
 			}
 			else
 			{
@@ -27,7 +30,7 @@ public class PopShoveItTrick : Trick
 		{
             if (gameObject.transform.localScale.x < 5)
 			{
-                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.5f, gameObject.transform.localScale.y);
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + interval, gameObject.transform.localScale.y);
 			}
 			else
 			{
