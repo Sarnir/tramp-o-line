@@ -3,38 +3,36 @@ using System.Collections;
 
 public class MenuController : MonoBehaviour
 {
-	public GameObject sky1;
-	public GameObject sky2;
-	
-	private Vector2 sky1Pos;
-	private Vector2 sky2Pos;
-	
-	private float leftBoundary = -10.0f;
-	private float rightBoundary = 11.0f;
+	public GameObject play;
+	public GameObject credits;
+	public GameObject exit;
+	public Camera camera;
+
+	private int lmb;
 
 	void Start ()
 	{
-		sky1Pos = new Vector2(rightBoundary, 0.0f);
-		sky2Pos = new Vector2(leftBoundary, 0.0f);
+		lmb = 0;
 	}
-
+	
 	void Update ()
 	{
-		ChangePosition(sky1Pos);
-		ChangePosition(sky2Pos);
-		sky1.transform.position = sky1Pos;
-		sky2.transform.position = sky2Pos;
-	}
-
-	public void ChangePosition(Vector2 position)
-	{
-		if (position.x <= leftBoundary)
+		if (Input.GetMouseButtonUp(lmb))
 		{
-			position = new Vector2(rightBoundary, 0.0f);
-		}
-		else
-		{
-			position = new Vector2(position.x - 0.5f, 0.0f);
+			float mouseX = camera.ScreenToWorldPoint(Input.mousePosition).x;
+			float mouseY = camera.ScreenToWorldPoint(Input.mousePosition).y;
+			if (Physics2D.Raycast(new Vector2(mouseX, mouseY), new Vector2(play.transform.position.x, play.transform.position.y), 0.1f))
+			{
+				print ("play");
+			}
+			else if (Physics2D.Raycast(new Vector2(mouseX, mouseY), new Vector2(credits.transform.position.x, credits.transform.position.y), 0.1f))
+			{
+				print ("credits");
+			}
+			else if (Physics2D.Raycast(new Vector2(mouseX, mouseY), new Vector2(exit.transform.position.x, exit.transform.position.y), 0.1f))
+			{
+				print ("exit");
+			}
 		}
 	}
 }
